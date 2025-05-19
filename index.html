@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Fancy Cursor Effects</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+            transition: transform 0.2s, opacity 0.3s ease-in-out;
+            z-index: 9999;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            transition: all 0.2s ease-out;
+            z-index: 9998;
+            mix-blend-mode: difference;
+        }
+
+        .particle {
+            pointer-events: none;
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            z-index: 9997;
+        }
+
+        .content {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            position: relative;
+        }
+
+        .content h1 {
+            font-size: 4rem;
+            margin: 0;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .content p {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        .content h1:hover {
+            transform: scale(1.1) rotate(2deg);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .interactive-area {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)); }
+            100% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8)); }
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="interactive-area"></div>
+    <div class="content">
+        <h1>Hello World! ✨</h1>
+        <p>Move your mouse around to create magic!</p>
+    </div>
+
+    <script>
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const interactiveArea = document.querySelector('.interactive-area');
+        let mouseX = 0, mouseY = 0;
+        let dotX = 0, dotY = 0;
+        let particles = [];
+
+        // Particle class
+        class Particle {
+            constructor(x, y) {
+                this.element = document.createElement('div');
+                this.element.className = 'particle';
+                document.body.appendChild(this.element);
+                
+                this.x = x;
+                this.y = y;
+                this.speed = Math.random() * 2 + 1;
+                this.angle = Math.random() * Math.PI * 2;
+                this.opacity = 1;
+                this.size = Math.random() * 3 + 2;
+            }
+
+            update() {
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+                this.opacity -= 0.02;
+                this.size *= 0.95;
+
+                this.element.style.left = `${this.x}px`;
+                this.element.style.top = `${this.y}px`;
+                this.element.style.opacity = this.opacity;
+                this.element.style.width = `${this.size}px`;
+                this.element.style.height = `${this.size}px`;
+
+                return this.opacity > 0;
+            }
+
+            destroy() {
+                this.element.remove();
+            }
+        }
+
+        function createParticle(x, y) {
+            particles.push(new Particle(x, y));
+        }
+
+        function updateParticles() {
+            particles = particles.filter(particle => {
+                const alive = particle.update();
+                if (!alive) {
+                    particle.destroy();
+                }
+                return alive;
+            });
+        }
+
+        // Smooth cursor movement
+        function updateCursor() {
+            dotX += (mouseX - dotX) * 0.2;
+            dotY += (mouseY - dotY) * 0.2;
+
+            cursorDot.style.left = `${dotX}px`;
+            cursorDot.style.top = `${dotY}px`;
+
+            cursorOutline.style.left = `${mouseX - 20}px`;
+            cursorOutline.style.top = `${mouseY - 20}px`;
+
+            if (Math.random() < 0.3) {
+                createParticle(dotX, dotY);
+            }
+
+            updateParticles();
+            requestAnimationFrame(updateCursor);
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Create interactive effects on mouse move
+            if (Math.random() < 0.1) {
+                const size = Math.random() * 100 + 50;
+                const element = document.createElement('div');
+                element.style.position = 'fixed';
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                element.style.borderRadius = '50%';
+                element.style.left = `${e.clientX - size/2}px`;
+                element.style.top = `${e.clientY - size/2}px`;
+                element.style.animation = 'ripple 1s linear forwards';
+                document.body.appendChild(element);
+
+                setTimeout(() => element.remove(), 1000);
+            }
+        });
+
+        // Interactive effects
+        document.querySelectorAll('h1, p').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursorOutline.style.transform = 'scale(2)';
+                cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.8)';
+                element.classList.add('glow');
+            });
+
+            element.addEventListener('mouseleave', () => {
+                cursorOutline.style.transform = 'scale(1)';
+                cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                element.classList.remove('glow');
+            });
+        });
+
+        // Handle cursor visibility
+        document.addEventListener('mouseleave', () => {
+            cursorDot.style.opacity = '0';
+            cursorOutline.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursorDot.style.opacity = '1';
+            cursorOutline.style.opacity = '1';
+        });
+
+        // Start the animation loop
+        updateCursor();
+
+        // Add some random floating effects in the background
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'particle';
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.opacity = Math.random() * 0.5;
+            star.style.animation = `float ${Math.random() * 3 + 2}s infinite alternate`;
+            document.body.appendChild(star);
+        }
+    </script>
+</body>
+</html> 
