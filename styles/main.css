@@ -157,7 +157,7 @@ h1 {
 
 .sidebar-toggle {
     position: fixed;
-    top: 20px;
+    top: 140px;
     left: 20px;
     width: 40px;
     height: 40px;
@@ -173,6 +173,13 @@ h1 {
     color: #fff;
     z-index: 1000;
     transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nav-sidebar.collapsed + .sidebar-toggle {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .sidebar-toggle:hover {
