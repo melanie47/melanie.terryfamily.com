@@ -218,11 +218,11 @@
 
         @keyframes float-up {
             0% {
-                transform: translateY(100vh) scale(1);
+                transform: translateY(0) scale(1);
                 opacity: 0.6;
             }
             100% {
-                transform: translateY(-100px) scale(0.8);
+                transform: translateY(-100vh) scale(0.8);
                 opacity: 0;
             }
         }
@@ -354,8 +354,9 @@
             bubble.style.width = size + 'px';
             bubble.style.height = size + 'px';
             
-            // Random horizontal position
+            // Random position anywhere on screen
             bubble.style.left = Math.random() * 100 + 'vw';
+            bubble.style.top = Math.random() * 100 + 'vh';
             
             // Random animation duration between 8s and 15s
             const duration = Math.random() * 7 + 8;
