@@ -79,6 +79,36 @@
             line-height: 1.2;
         }
 
+        .content-area {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .coming-soon {
+            font-family: 'Comfortaa', cursive;
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            margin: 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
         .sparkle {
             position: fixed;
             width: 4px;
@@ -200,6 +230,9 @@
     
     <main class="container">
         <h1>Information</h1>
+        <div class="content-area">
+            <p class="coming-soon">Coming Soon</p>
+        </div>
     </main>
 
     <script>
