@@ -206,7 +206,7 @@
 
         .bubble {
             position: fixed;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.3);
             border: 5px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             pointer-events: none;
@@ -371,10 +371,14 @@
                     bubble.remove();
                 }
             }, duration * 1000);
+
+            // Schedule next bubble with random delay
+            const nextDelay = Math.random() * 1200 + 800; // Random between 800 and 2000
+            setTimeout(createBubble, nextDelay);
         }
 
-        // Create bubbles periodically
-        setInterval(createBubble, 2000);
+        // Start bubble creation
+        createBubble();
     </script>
 </body>
 </html>
