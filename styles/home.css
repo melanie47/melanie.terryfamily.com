@@ -1,5 +1,18 @@
 .welcome {
     margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome .logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.welcome h1 {
+    margin-bottom: 1rem;
 }
 
 .navigation {
@@ -7,6 +20,7 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    margin-top: 2rem;
 }
 
 .nav-row {
