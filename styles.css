@@ -40,8 +40,8 @@ body {
 /* Sparkles */
 .sparkle {
     position: fixed;
-    width: 4px;
-    height: 4px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: white;
     pointer-events: none;
