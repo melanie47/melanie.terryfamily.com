@@ -81,5 +81,54 @@
             <p>Made with 💖 by Melanie</p>
         </footer>
     </main>
+
+    <script>
+        // Create sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            
+            // Random position
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            
+            document.body.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1500);
+        }
+
+        // Create bubbles
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            // Random size between 20px and 60px
+            const size = Math.random() * 40 + 20;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            
+            // Random horizontal position
+            bubble.style.left = Math.random() * 100 + 'vw';
+            
+            // Random animation duration between 6s and 10s
+            bubble.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            
+            document.body.appendChild(bubble);
+            
+            // Remove bubble after animation
+            setTimeout(() => {
+                bubble.remove();
+            }, 10000);
+        }
+
+        // Create sparkles periodically
+        setInterval(createSparkle, 300);
+        
+        // Create bubbles periodically
+        setInterval(createBubble, 2000);
+    </script>
 </body>
 </html>
