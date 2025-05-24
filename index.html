@@ -68,13 +68,6 @@
 
         .welcome {
             margin-bottom: 3rem;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
         }
 
         .logo {
@@ -213,18 +206,20 @@
 
         .bubble {
             position: fixed;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             pointer-events: none;
             animation: float-up linear forwards;
             backdrop-filter: blur(2px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            z-index: 1;
         }
 
         @keyframes float-up {
             0% {
                 transform: translateY(100vh) scale(1);
-                opacity: 0.8;
+                opacity: 0.6;
             }
             100% {
                 transform: translateY(-100px) scale(0.8);
@@ -352,7 +347,6 @@
             bubble.className = 'bubble';
             
             // Random size between 1cm and 5cm (converting to pixels)
-            // 1cm ≈ 37.8px at 96 DPI
             const minSize = 37.8; // 1cm
             const maxSize = 189; // 5cm
             const size = Math.random() * (maxSize - minSize) + minSize;
@@ -367,11 +361,14 @@
             const duration = Math.random() * 7 + 8;
             bubble.style.animationDuration = duration + 's';
             
+            // Add bubble to body
             document.body.appendChild(bubble);
             
             // Remove bubble after animation
             setTimeout(() => {
-                bubble.remove();
+                if (bubble.parentNode) {
+                    bubble.remove();
+                }
             }, duration * 1000);
         }
 
