@@ -7,9 +7,9 @@
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
     transition: transform 0.3s ease;
     z-index: 1000;
-    transform: translateX(calc(120px / 2 - 50px)); /* Center over sidebar (sidebar width is 120px, logo width is 100px) */
+    transform: translateX(calc(160px / 2 - 50px)); /* Center over buttons (button width is 160px, logo width is 100px) */
 }
 
 .logo:hover {
-    transform: translateX(calc(120px / 2 - 50px)) scale(1.1) rotate(5deg);
+    transform: translateX(calc(160px / 2 - 50px)) scale(1.1) rotate(5deg);
 } 
