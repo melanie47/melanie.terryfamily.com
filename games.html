@@ -274,6 +274,37 @@
             }
         }
 
+        .collapse-button {
+            position: absolute;
+            top: 0;
+            right: -40px;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .nav-sidebar:not(.collapsed) .collapse-button {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .collapse-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -287,6 +318,7 @@
     
     <img src="logo.png" alt="Melanie's Logo" class="logo">
     <nav class="nav-sidebar">
+        <div class="collapse-button">×</div>
         <a href="index.html">Home</a>
         <a href="portfolio.html">Art</a>
         <a href="blog.html">Writing</a>
@@ -366,10 +398,16 @@
         // Sidebar toggle functionality
         const sidebar = document.querySelector('.nav-sidebar');
         const toggle = document.querySelector('.sidebar-toggle');
+        const collapseBtn = document.querySelector('.collapse-button');
         
         toggle.addEventListener('click', () => {
             sidebar.classList.toggle('collapsed');
             toggle.classList.toggle('collapsed');
+        });
+
+        collapseBtn.addEventListener('click', () => {
+            sidebar.classList.add('collapsed');
+            toggle.classList.add('collapsed');
         });
     </script>
 </body>
