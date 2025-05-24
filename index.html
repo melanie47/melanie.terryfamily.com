@@ -81,27 +81,5 @@
             <p>Made with 💖 by Melanie</p>
         </footer>
     </main>
-
-    <script>
-        // Create sparkles
-        function createSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            
-            // Random position
-            sparkle.style.left = Math.random() * 100 + 'vw';
-            sparkle.style.top = Math.random() * 100 + 'vh';
-            
-            document.body.appendChild(sparkle);
-            
-            // Remove sparkle after animation
-            setTimeout(() => {
-                sparkle.remove();
-            }, 1500);
-        }
-
-        // Create sparkles periodically
-        setInterval(createSparkle, 300);
-    </script>
 </body>
 </html>
