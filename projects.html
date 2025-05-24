@@ -179,6 +179,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
         }
 
         .sidebar-toggle:hover {
@@ -192,16 +194,9 @@
             font-size: 1.5rem;
         }
 
-        .sidebar-toggle.collapsed {
-            left: 20px;
-        }
-
-        .sidebar-toggle.collapsed::before {
-            content: '☰';
-        }
-
         .nav-sidebar.collapsed + .sidebar-toggle {
-            left: 20px;
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .sparkle {
