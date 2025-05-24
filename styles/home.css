@@ -1,0 +1,102 @@
+.welcome {
+    margin-bottom: 3rem;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 3rem 0;
+}
+
+.nav-button-container {
+    position: relative;
+    perspective: 1000px;
+}
+
+.nav-button {
+    text-decoration: none;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    display: block;
+    transform-style: preserve-3d;
+    width: 160px; /* Fixed width for all buttons */
+    text-align: center;
+}
+
+.nav-button:hover {
+    transform: translateY(-5px) rotateX(10deg);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.icon {
+    font-size: 1.5rem;
+}
+
+.text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: 'Comfortaa', cursive;
+}
+
+.floating-elements {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-button-container:hover .floating-elements {
+    opacity: 1;
+}
+
+.floating-elements span {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: float-around 3s infinite;
+}
+
+.floating-elements span:nth-child(1) { left: 20%; animation-delay: 0s; }
+.floating-elements span:nth-child(2) { left: 50%; animation-delay: 0.5s; }
+.floating-elements span:nth-child(3) { left: 80%; animation-delay: 1s; }
+
+@keyframes float-around {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
+
+footer {
+    margin-top: 4rem;
+    color: #fff;
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        gap: 1rem;
+    }
+    
+    .nav-button {
+        padding: 0.8rem 1.5rem;
+    }
+} 
