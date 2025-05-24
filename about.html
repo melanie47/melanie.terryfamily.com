@@ -156,7 +156,7 @@
 
         .back-button {
             position: fixed;
-            top: 20px;
+            top: 140px;
             left: 20px;
             text-decoration: none;
             color: white;
@@ -170,10 +170,18 @@
             font-weight: 600;
         }
 
-        .back-button:hover {
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
         }
 
         @media (max-width: 768px) {
@@ -187,6 +195,7 @@
     <div class="stars"></div>
     <div class="twinkling"></div>
     
+    <img src="logo.png" alt="Melanie's Logo" class="logo">
     <a href="/" class="back-button">← Back</a>
     
     <main class="container">
