@@ -24,4 +24,31 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+}
+
+.game-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.game-button {
+    padding: 2rem;
+    font-size: 1.5rem;
+    font-family: 'Comfortaa', cursive;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 } 
