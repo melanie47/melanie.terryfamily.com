@@ -75,14 +75,13 @@
 
 .floating-elements {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
-    transform: translate(-50%, -50%);
 }
 
 .nav-button-container:hover .floating-elements {
@@ -96,16 +95,19 @@
 }
 
 .floating-elements span:nth-child(1) { 
+    top: 0;
+    left: 50%;
     animation: float-around 3s infinite, swirl 6s infinite cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translate(-50%, -50%);
 }
 .floating-elements span:nth-child(2) { 
+    top: 50%;
+    right: 0;
     animation: float-around 3s infinite, swirl 6s infinite 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translate(-50%, -50%) rotate(120deg);
 }
 .floating-elements span:nth-child(3) { 
+    bottom: 0;
+    left: 50%;
     animation: float-around 3s infinite, swirl 6s infinite 1s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translate(-50%, -50%) rotate(240deg);
 }
 
 @keyframes float-around {
@@ -116,9 +118,9 @@
 
 @keyframes swirl {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
-    25% { transform: translate(-50%, -50%) rotate(90deg) translateY(-40px); }
-    50% { transform: translate(-50%, -50%) rotate(180deg) translateY(-40px); }
-    75% { transform: translate(-50%, -50%) rotate(270deg) translateY(-40px); }
+    25% { transform: translate(-50%, -50%) rotate(90deg) translateX(80px); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) translateX(80px); }
+    75% { transform: translate(-50%, -50%) rotate(270deg) translateX(80px); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
