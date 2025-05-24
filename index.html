@@ -129,6 +129,8 @@
             transition: all 0.3s ease;
             display: block;
             transform-style: preserve-3d;
+            width: 160px; /* Fixed width for all buttons */
+            text-align: center;
         }
 
         .nav-button:hover {
@@ -140,6 +142,7 @@
         .button-content {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
         }
 
@@ -215,27 +218,53 @@
         .bubble {
             position: fixed;
             background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.3) 0%,
-                rgba(255, 255, 255, 0.1) 50%,
-                rgba(255, 255, 255, 0.3) 100%);
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
+                rgba(255, 255, 255, 0.4) 0%,
+                rgba(255, 255, 255, 0.1) 30%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.1) 70%,
+                rgba(255, 255, 255, 0.4) 100%);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 55% 45% 48% 52% / 55% 48% 52% 45%;
             pointer-events: none;
-            animation: float-up linear forwards;
+            animation: float-up linear forwards, elastic 3s ease-in-out infinite;
             backdrop-filter: blur(2px);
             box-shadow: 
                 0 0 20px rgba(255, 255, 255, 0.2),
-                inset 0 0 20px rgba(255, 255, 255, 0.1);
+                inset 0 0 20px rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(255, 255, 255, 0.1);
             z-index: 1;
+            filter: brightness(1.2) contrast(1.1);
+        }
+
+        @keyframes elastic {
+            0% {
+                border-radius: 55% 45% 48% 52% / 55% 48% 52% 45%;
+            }
+            25% {
+                border-radius: 45% 55% 52% 48% / 45% 52% 48% 55%;
+            }
+            50% {
+                border-radius: 48% 52% 55% 45% / 50% 55% 45% 52%;
+            }
+            75% {
+                border-radius: 52% 48% 45% 55% / 52% 45% 55% 48%;
+            }
+            100% {
+                border-radius: 55% 45% 48% 52% / 55% 48% 52% 45%;
+            }
         }
 
         @keyframes float-up {
             0% {
-                transform: translateY(0) scale(1);
+                transform: translateY(0) scale(1) rotate(0deg);
                 opacity: 0.6;
             }
+            50% {
+                transform: translateY(-50vh) scale(0.9) rotate(180deg);
+                opacity: 0.4;
+            }
             100% {
-                transform: translateY(-100vh) scale(0.8);
+                transform: translateY(-100vh) scale(0.8) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -275,7 +304,7 @@
                 <a href="/portfolio" class="nav-button portfolio">
                     <div class="button-content">
                         <span class="icon">🎨</span>
-                        <span class="text">Portfolio</span>
+                        <span class="text">Art</span>
                     </div>
                 </a>
                 <div class="floating-elements portfolio-elements">
@@ -289,7 +318,7 @@
                 <a href="/blog" class="nav-button blog">
                     <div class="button-content">
                         <span class="icon">📝</span>
-                        <span class="text">Blog</span>
+                        <span class="text">Writing</span>
                     </div>
                 </a>
                 <div class="floating-elements blog-elements">
@@ -317,7 +346,7 @@
                 <a href="/about" class="nav-button about">
                     <div class="button-content">
                         <span class="icon">👋</span>
-                        <span class="text">About Me</span>
+                        <span class="text">Information</span>
                     </div>
                 </a>
                 <div class="floating-elements about-elements">
@@ -373,7 +402,7 @@
             
             // Random animation duration between 8s and 15s
             const duration = Math.random() * 7 + 8;
-            bubble.style.animationDuration = duration + 's';
+            bubble.style.animationDuration = `${duration}s, ${Math.random() * 2 + 2}s`; // Separate durations for float and elastic
             
             // Add bubble to body
             document.body.appendChild(bubble);
