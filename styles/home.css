@@ -97,17 +97,17 @@
 .floating-elements span:nth-child(1) { 
     top: 0;
     left: 50%;
-    animation: float-around 3s infinite, swirl 6s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    animation: float-around 3s infinite, swirl 8s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 .floating-elements span:nth-child(2) { 
     top: 50%;
     right: 0;
-    animation: float-around 3s infinite, swirl 6s infinite 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: float-around 3s infinite, swirl 8s infinite 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 .floating-elements span:nth-child(3) { 
     bottom: 0;
     left: 50%;
-    animation: float-around 3s infinite, swirl 6s infinite 1s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: float-around 3s infinite, swirl 8s infinite 1s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
 @keyframes float-around {
@@ -118,9 +118,9 @@
 
 @keyframes swirl {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
-    25% { transform: translate(-50%, -50%) rotate(90deg) translateX(80px); }
-    50% { transform: translate(-50%, -50%) rotate(180deg) translateX(80px); }
-    75% { transform: translate(-50%, -50%) rotate(270deg) translateX(80px); }
+    25% { transform: translate(-50%, -50%) rotate(90deg) translateX(120px); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) translateX(120px); }
+    75% { transform: translate(-50%, -50%) rotate(270deg) translateX(120px); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
